@@ -1,0 +1,8 @@
+[
+  {"Gender": "Male", "HeightCm": 171},
+  { "Gender": "Male", "HeightCm": 161},
+  { "Gender": "Male", "HeightCm": 180},
+  { "Gender": "Female", "HeightCm": 166},
+  {"Gender": "Female", "HeightCm": 150},
+  {"Gender": "Female", "HeightCm": 167}
+]

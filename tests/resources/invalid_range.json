@@ -1,0 +1,8 @@
+[
+  {"Gender": "Male", "HeightCm": 999, "WeightKg": 96 },
+  { "Gender": "Male", "HeightCm": 161, "WeightKg": 999 },
+  { "Gender": "Male", "HeightCm": 0, "WeightKg": 77 },
+  { "Gender": "Female", "HeightCm": 166, "WeightKg": 0},
+  {"Gender": "Female", "HeightCm": -1, "WeightKg": 70},
+  {"Gender": "Female", "HeightCm": 167, "WeightKg": -1}
+]
