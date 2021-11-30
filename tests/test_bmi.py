@@ -31,9 +31,7 @@ class TestBMI(TestCase):
         logging.info("Testing that BMI class instantiates with correct schema")
         self.assertIsInstance(BMI(self.valid_df.copy()), BMI)
         logging.info("Testing that BMI class raises exception with incorrect schema")
-        with warnings.catch_warnings():
-            warnings.simplefilter("ignore")
-            self.assertRaises(ValueError, BMI, self.schema_df.copy())
+        self.assertRaises(ValueError, BMI, self.schema_df.copy())
 
     def test_bmi_calc(self):
         logging.info("Testing that test_range_cnt calculates correctly")
@@ -75,11 +73,9 @@ class TestBMI(TestCase):
         self.assertEqual(1, bmi.range_cnt('Very severely obese'))
         self.assertEqual(0, bmi.range_cnt('foo'))
         logging.info("Testing that test_range_cnt raises exception on wrong data type")
-        with warnings.catch_warnings():
-            warnings.simplefilter("ignore")
-            self.assertRaises(TypeError, bmi.range_cnt(0))
-            self.assertRaises(TypeError, bmi.range_cnt(True))
-            self.assertRaises(TypeError, bmi.range_cnt(None))
+        self.assertRaises(TypeError, bmi.range_cnt(0))
+        self.assertRaises(TypeError, bmi.range_cnt(True))
+        self.assertRaises(TypeError, bmi.range_cnt(None))
 
     @patch("builtins.open", new_callable=mock_open)
     def test_write(self, mock_io):
