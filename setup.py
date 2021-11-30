@@ -5,7 +5,7 @@ setup(
     version='0.1.0',
     license='GNU GPL',
     author='Rhys Mansel',
-    packages=find_packages(include=['tests', 'tests.*', 'source', 'source.*']),
+    packages=find_packages(include=['tests', 'tests.*', 'src', 'src.*']),
     install_requires=['pandas==1.3.4'],
-    entry_points={'console_scripts': ['bmi-gen=source.main:main']}
+    entry_points={'console_scripts': ['bmi-gen=src.main:main']}
 )

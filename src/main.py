@@ -1,7 +1,7 @@
 from os import path
+import sys
 from pandas import read_json
-
-from source.bmi import BMI
+from src.bmi.bmi import BMI
 
 
 def main(*args: [str], infile: str, outfile: str = None, validate: bool = True) -> dict:

@@ -1,8 +1,9 @@
 import logging
+import warnings
 from unittest import TestCase
 from pandas import read_json
 from unittest.mock import patch, mock_open
-from source.bmi import BMI
+from src.bmi.bmi import BMI
 
 
 class TestBMI(TestCase):
@@ -30,7 +31,9 @@ class TestBMI(TestCase):
         logging.info("Testing that BMI class instantiates with correct schema")
         self.assertIsInstance(BMI(self.valid_df.copy()), BMI)
         logging.info("Testing that BMI class raises exception with incorrect schema")
-        self.assertRaises(ValueError, BMI, self.schema_df.copy())
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
+            self.assertRaises(ValueError, BMI, self.schema_df.copy())
 
     def test_bmi_calc(self):
         logging.info("Testing that test_range_cnt calculates correctly")
@@ -46,17 +49,19 @@ class TestBMI(TestCase):
         bmi = BMI(self.valid_df.copy())
         bmi.bmi_val()
         self.assertEqual(6, len(bmi.df))
-        logging.info("Testing that test_range_cnt correctly filters unrealistic values")
-        bmi = BMI(self.range_df.copy())
-        bmi.bmi_val()
-        self.assertEqual(0, len(bmi.df))
-        logging.info("Testing that test_range_cnt correctly filters incorrect data types")
-        bmi = BMI(self.types_df.copy())
-        bmi.bmi_val()
-        self.assertEqual(1, len(bmi.df))
-        logging.info("Testing that test_range_cnt correctly raises warning on invalid data")
-        bmi = BMI(self.range_df.copy())
-        self.assertWarns(UserWarning, bmi.bmi_val)
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
+            logging.info("Testing that test_range_cnt correctly filters unrealistic values")
+            bmi = BMI(self.range_df.copy())
+            bmi.bmi_val()
+            self.assertEqual(0, len(bmi.df))
+            logging.info("Testing that test_range_cnt correctly filters incorrect data types")
+            bmi = BMI(self.types_df.copy())
+            bmi.bmi_val()
+            self.assertEqual(1, len(bmi.df))
+            logging.info("Testing that test_range_cnt correctly raises warning on invalid data")
+            bmi = BMI(self.range_df.copy())
+            self.assertWarns(UserWarning, bmi.bmi_val)
 
     def test_range_cnt(self):
         logging.info("Testing that test_range_cnt counts BMI categories correctly")
@@ -70,9 +75,11 @@ class TestBMI(TestCase):
         self.assertEqual(1, bmi.range_cnt('Very severely obese'))
         self.assertEqual(0, bmi.range_cnt('foo'))
         logging.info("Testing that test_range_cnt raises exception on wrong data type")
-        self.assertRaises(TypeError, bmi.range_cnt(0))
-        self.assertRaises(TypeError, bmi.range_cnt(True))
-        self.assertRaises(TypeError, bmi.range_cnt(None))
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
+            self.assertRaises(TypeError, bmi.range_cnt(0))
+            self.assertRaises(TypeError, bmi.range_cnt(True))
+            self.assertRaises(TypeError, bmi.range_cnt(None))
 
     @patch("builtins.open", new_callable=mock_open)
     def test_write(self, mock_io):

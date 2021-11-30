@@ -10,7 +10,7 @@ may be specified.
 
 ## Usage
 
-run `pip3 install -r ./requirements.txt` to install requirements or `pip3 install .` to install as pip package.
+run `pip3 install .` to install.
 
 run `python3 ./source/main.py` for example output.
 
