@@ -12,7 +12,7 @@ may be specified.
 
 run `pip3 install .` to install.
 
-run `python3 ./source/main.py` for example output.
+run `python3 ./src/main.py` for example output.
 
 
 
